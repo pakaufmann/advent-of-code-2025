@@ -31,16 +31,8 @@ fun main(args: Array<String>) {
         val (name, connections) = line.split(": ")
         ServerRack(name, connections.split(" ").toSet())
     }
-    val mappedNames = mapped.map { it.name }.toSet()
-    val endPositions = mapped
-        .flatMap { it.connections }
-        .filter { !mappedNames.contains(it) }
-        .map { ServerRack(it, emptySet()) }
-        .toSet()
-
-    val racks = mapped + endPositions
-    println(part1(racks))
-    println(part2(racks))
+    println(part1(mapped))
+    println(part2(mapped))
 }
 
 data class ServerRack(val name: String, val connections: Set<String>)
